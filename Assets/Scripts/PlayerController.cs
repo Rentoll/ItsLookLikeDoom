@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour {
                     Debug.Log("There nothing");
                 }
                 ammo--;
+
+                AudioController.instance.playPlayerShoot();
+
                 gunAnim.SetTrigger("Shoot");
                 updateText();
             }
@@ -87,7 +90,10 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(int damageAmount) {
         currentHealth -= damageAmount;
-        if(currentHealth <= 0) {
+
+        AudioController.instance.playPlayerHurt();
+
+        if (currentHealth <= 0) {
             deadScreen.SetActive(true);
             currentHealth = 0;
         }

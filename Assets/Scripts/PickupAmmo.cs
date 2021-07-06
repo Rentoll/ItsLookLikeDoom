@@ -22,6 +22,9 @@ public class PickupAmmo : MonoBehaviour {
         if(collision.tag == "Player") {
             PlayerController.instance.ammo += ammountOfAmmo;
             PlayerController.instance.updateText();
+
+            AudioController.instance.playAmmoPickup();
+
             Destroy(gameObject);
         }
     }

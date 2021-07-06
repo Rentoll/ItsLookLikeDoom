@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour {
             if(canShoot) {
                 shootCounter -= Time.deltaTime;
                 if(shootCounter <= 0) {
+                    AudioController.instance.playEnemyShoot();
+
                     Instantiate(bullet, firePoint.position, firePoint.rotation);
                     shootCounter = fireRate;
                 }
@@ -41,7 +43,10 @@ public class EnemyController : MonoBehaviour {
 
     public void takeDamage() {
         health--;
-        if(health <= 0) {
+
+        if (health <= 0) {
+            AudioController.instance.playEnemyDeath();
+
             Destroy(gameObject);
             Instantiate(Explosion, transform.position, transform.rotation);
         }

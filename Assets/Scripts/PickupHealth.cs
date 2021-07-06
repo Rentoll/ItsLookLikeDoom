@@ -19,6 +19,9 @@ public class PickupHealth : MonoBehaviour {
         if (collision.tag == "Player") {
             PlayerController.instance.AddHealth(ammountOfHealth);
             PlayerController.instance.updateText();
+
+            AudioController.instance.playHealthPickup();
+
             Destroy(gameObject);
         }
     }
